@@ -42,21 +42,17 @@ const LabScroller = () => {
 
 export default LabScroller
 
-const RotateButtonA = styled.a`
+const RotateButtonA = styled.button`
   position: relative;
   top: 15px;
-    z-index: 2; 
-  
-   
-    text-align: center;
-   
-    width: 100px;
-    /* transform-origin: bottom; */
-   
-    cursor: pointer;
-    color: white;
-    padding-top: 5px;
-
-
-
+  z-index: 2; 
+  text-align: center;
+  width: 100px;
+  cursor: pointer;
+  color: white;
+  padding-top: 5px;
+  background: transparent;
+  border: 1px solid white;
+  color: white;
+  margin: 5px;
 `;

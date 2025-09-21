@@ -1,4 +1,5 @@
 
+import React from "react";
 import styled from "styled-components";
 import "../Logo/Logo.css";
 import { useNavigate } from 'react-router-dom';
@@ -6,71 +7,59 @@ import { RiHome7Fill } from "react-icons/ri";
 import { VscGithubAlt } from "react-icons/vsc";
 import { RiInstagramLine } from "react-icons/ri";
 import { RxDiscordLogo } from "react-icons/rx";
+import noyauImage from '../Logo/noyau.jpeg';
 const Logo = () => {
   const navigate = useNavigate();
-    const goToBasePage = () => {
-      window.location.reload(); 
-        navigate('/Base'); // Navigate to the /Base route
-    };
   
-  document.addEventListener('DOMContentLoaded', () => {
-    const parent = document.querySelector('RotateButton');
-    const child = document.querySelector('button');
+  const goToBasePage = () => {
+    navigate('/Base'); // Navigate to the /Base route
+  };
 
-    child.addEventListener('mouseenter', () => {
-        parent.style.backgroundColor = '#e74c3c'; // Change the parent's background color
-    });
-
-    child.addEventListener('mouseleave', () => {
-        parent.style.backgroundColor = '#3498db'; // Revert to the original color
-    });
-});
-  setInterval(()=>{
-    if(document.querySelector("header")){
-      document.querySelector("header").remove()
-    }
-  },10)
+  // Removed header removal logic as it was hiding the navigation
   return (
-    <Noyaubase className="d-flex justify-content-center allign-items-center">
-    <NoyauToggle id="toggle">
-      <RotateButton className='anchor' href="/Base" id="btnA">
-        <button onClick={goToBasePage} className="btn text-light"><RiHome7Fill style={{fontSize: 35}}/></button>
-      
-      </RotateButton>
-      <RotateButton href="#" id="btnB">
-        <button className="btn text-light"><VscGithubAlt style={{fontSize: 35}} /></button>
-      </RotateButton>
-      <RotateButton href="#" id="btnC">
-        <button className="btn text-light"><RiInstagramLine style={{fontSize: 35}} /></button>
-      </RotateButton>
-      <RotateButton href="#" id="btnD">
-        <button className="btn text-light"><RxDiscordLogo style={{fontSize: 35}} /></button>
-      </RotateButton>
-     
+    <Noyaubase className="d-flex justify-content-center align-items-center">
+      <NoyauToggle id="toggle">
+        <RotateButton id="btnA">
+          <button onClick={goToBasePage} className="btn text-light">
+            <RiHome7Fill style={{fontSize: 35}}/>
+          </button>
+        </RotateButton>
+        <RotateButton id="btnB">
+          <button className="btn text-light">
+            <VscGithubAlt style={{fontSize: 35}} />
+          </button>
+        </RotateButton>
+        <RotateButton id="btnC">
+          <button className="btn text-light">
+            <RiInstagramLine style={{fontSize: 35}} />
+          </button>
+        </RotateButton>
+        <RotateButton id="btnD">
+          <button className="btn text-light">
+            <RxDiscordLogo style={{fontSize: 35}} />
+          </button>
+        </RotateButton>
 
-    <NoyauRotate id="Rotate">
-      <img className="rounded-circle" src="../images/noyau.jpeg" alt="noyau"/>
-    </NoyauRotate>
-    
-    </NoyauToggle>
+        <NoyauRotate id="Rotate">
+          <img className="rounded-circle" src={noyauImage} alt="noyau"/>
+        </NoyauRotate>
+      </NoyauToggle>
     </Noyaubase>
   )
 }
-const RotateButton = styled.a`
+const RotateButton = styled.div`
   position: absolute;
-    z-index: 4; 
-    border-top-right-radius: 15%;
-    border-top-left-radius: 15%;
-    text-align: center;
-   
-    height: 200px;
-    width: 100px;
-    transform-origin: bottom;
-    border-top: 1px solid white;
-    cursor: pointer;
-    color: white;
-    padding-top: 5px;
-
+  z-index: 4; 
+  border-top-right-radius: 15%;
+  border-top-left-radius: 15%;
+  text-align: center;
+  height: 200px;
+  width: 100px;
+  transform-origin: bottom;
+  border-top: 1px solid white;
+  cursor: pointer;
+  color: white;
+  padding-top: 5px;
 `;
 const NoyauToggle = styled.div`
 border: 1px solid black;
@@ -163,16 +152,15 @@ animation: rotate 99s linear infinite;
 }`;
 
 const Noyaubase = styled.main`
-height: 100vh;
+min-height: calc(100vh - 80px); /* Account for header height */
 justify-content: center;
 align-items: center;
-
-position: absolute;
+display: flex;
 width: 100%;
-height: 100%;
 background: linear-gradient(80deg, #000000,#434343);
 background-size: 400% 400%;
 animation: gradientAnimation 10s ease infinite;
+padding: 20px 0;
 
 @keyframes gradientAnimation {
     0% {
